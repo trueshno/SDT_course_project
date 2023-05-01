@@ -4,7 +4,6 @@ using Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.Implementations
@@ -20,7 +19,7 @@ namespace Service.Implementations
 
         public Task<bool> Create(Group group)
         {
-            if(group == null)
+            if (group == null)
             {
                 return Task.FromResult(false);
             }
@@ -32,7 +31,7 @@ namespace Service.Implementations
         {
             var group = await _repository.GetById(id);
 
-            if(group == null)
+            if (group == null)
             {
                 return false;
             }
@@ -44,7 +43,7 @@ namespace Service.Implementations
         {
             var group = await _repository.GetById(id);
 
-            if(group == null)
+            if (group == null)
             {
                 return null;
             }

@@ -1,12 +1,5 @@
-using DAL;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Core
 {
@@ -14,8 +7,7 @@ namespace Core
     {
         public static void Main(string[] args)
         {
-            ApplicationDbContext applicationDbContext = new ApplicationDbContext();
-            //CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

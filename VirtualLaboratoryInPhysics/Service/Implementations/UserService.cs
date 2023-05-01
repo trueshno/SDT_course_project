@@ -4,7 +4,6 @@ using Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.Implementations
@@ -22,14 +21,14 @@ namespace Service.Implementations
 
         public Task<bool> Authorization(string login, string password)
         {
-            if(login == null || password == null)
+            if (login == null || password == null)
             {
                 return Task.FromResult(false);
             }
 
             var user = _userRepository.GetByLogin(login);
 
-            if(user == null)
+            if (user == null)
             {
                 return Task.FromResult(false);
             }
@@ -41,7 +40,7 @@ namespace Service.Implementations
         {
             var user = await _userRepository.GetById(id);
 
-            if(user == null)
+            if (user == null)
             {
                 return false;
             }
@@ -53,7 +52,7 @@ namespace Service.Implementations
         {
             var user = await _userRepository.GetById(userId);
 
-            if(user == null)
+            if (user == null)
             {
                 return null;
             }
@@ -65,7 +64,7 @@ namespace Service.Implementations
         {
             var user = await _userRepository.GetById(userId);
 
-            if( user == null )
+            if (user == null)
             {
                 return null;
             }
@@ -75,7 +74,7 @@ namespace Service.Implementations
 
         public Task<bool> Registration(User user)
         {
-            if(user == null)
+            if (user == null)
             {
                 return Task.FromResult(false);
             }

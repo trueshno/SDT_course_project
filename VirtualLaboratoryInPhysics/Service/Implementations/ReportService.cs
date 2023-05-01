@@ -1,10 +1,9 @@
 ﻿using DAL.Interfaces;
 using Domain.Entity;
+using Domain.Helper.Interfaces;
 using Service.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.Implementations
@@ -12,17 +11,19 @@ namespace Service.Implementations
     public class ReportService : IReportService
     {
         private readonly IReportRepository _repository;
+        private readonly IWordHelper _wordHelper;
 
-        public ReportService(IReportRepository repository)
+        public ReportService(IReportRepository repository, IWordHelper wordHelper)
         {
             _repository = repository;
+            _wordHelper = wordHelper;
         }
 
         public async Task<bool> ChangeGrade(int grade, Guid reportId)
         {
             var report = await _repository.GetById(reportId);
 
-            if(report == null)
+            if (report == null)
             {
                 return false;
             }
@@ -32,8 +33,20 @@ namespace Service.Implementations
             return await _repository.Update(report);
         }
 
-        public Task<bool> Create(Report report)
+        public Task<bool> Create(Report report, Dictionary<string, string> fileItems) //TODO мб нужно переделать
         {
+            if (report == null)
+            {
+                return Task.FromResult(false);
+            }
+
+            var application = _wordHelper.CreateEmptyFile();
+
+            _wordHelper.FillFile(application, fileItems);
+            _wordHelper.SaveDocument(application.ActiveDocument, report.Content);
+            _wordHelper.CloseDocument(application.ActiveDocument);
+            _wordHelper.CloseApplication(application);
+
             return _repository.Create(report);
         }
 
@@ -41,7 +54,7 @@ namespace Service.Implementations
         {
             var report = await _repository.GetById(id);
 
-            if(report == null)
+            if (report == null)
             {
                 return false;
             }

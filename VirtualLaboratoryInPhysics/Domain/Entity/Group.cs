@@ -13,7 +13,7 @@ namespace Domain.Entity
             GroupLaboratoryWorks = new HashSet<GroupLaboratoryWorks>();
         }
 
-        
+
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
