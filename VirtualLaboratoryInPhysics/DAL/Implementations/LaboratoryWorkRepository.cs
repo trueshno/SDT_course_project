@@ -53,16 +53,16 @@ namespace DAL.Implementations
 
         public Task<List<LaboratoryWork>> GetRange(List<Guid> workIds)
         {
-            if(workIds == null)
+            if (workIds == null)
             {
                 return null;
             }
 
             var works = new List<LaboratoryWork>();
 
-            for(int i = 0;  i < workIds.Count; i++)
+            for (int i = 0; i < workIds.Count; i++)
             {
-                if(_context.LaboratoryWorks.Any(x => x.Id == workIds[i]))
+                if (_context.LaboratoryWorks.Any(x => x.Id == workIds[i]))
                 {
                     works.Add(_context.LaboratoryWorks.FirstOrDefault(x => x.Id == workIds[i]));
                 }

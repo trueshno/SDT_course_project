@@ -2,9 +2,6 @@
 using Domain.Entity;
 using Service.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.Implementations
@@ -20,7 +17,7 @@ namespace Service.Implementations
 
         public Task<bool> Create(GroupLaboratoryWorks groupLaboratoryWorks)
         {
-            if(groupLaboratoryWorks == null)
+            if (groupLaboratoryWorks == null)
             {
                 return Task.FromResult(false);
             }
@@ -32,7 +29,7 @@ namespace Service.Implementations
         {
             var groupLaboratoryWorks = await _repository.GetById(id);
 
-            if(groupLaboratoryWorks == null)
+            if (groupLaboratoryWorks == null)
             {
                 return false;
             }
@@ -42,7 +39,7 @@ namespace Service.Implementations
 
         public Task<bool> Update(GroupLaboratoryWorks groupLaboratoryWorks)
         {
-            if(groupLaboratoryWorks == null)
+            if (groupLaboratoryWorks == null)
             {
                 return Task.FromResult(false);
             }
