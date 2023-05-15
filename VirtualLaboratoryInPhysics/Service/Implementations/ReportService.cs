@@ -40,7 +40,7 @@ namespace Service.Implementations
                 return Task.FromResult(false);
             }
 
-            var application = _wordHelper.CreateEmptyFile();
+            var application = _wordHelper.OpenFile(report.LaboratoryWorkNavigation.SampleReport);
 
             _wordHelper.FillFile(application, fileItems);
             _wordHelper.SaveDocument(application.ActiveDocument, report.Content);
